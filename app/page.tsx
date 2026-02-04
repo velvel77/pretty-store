@@ -1,5 +1,5 @@
 import Header from "../components/navigation/header";
-import type { Product } from "./models/Product";
+import type { Product } from "./models/product";
 
 //GETTER for shop API
 async function getStore() {
