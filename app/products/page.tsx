@@ -1,6 +1,10 @@
 import Header from "../../components/navigation/header";
 import type { Product } from ".././models/product";
 
+// export async function generateStaticParams() {
+//     const products = await getStore();
+// }
+
 async function getProduct(id: number): Promise<Product> {
   try {
 
