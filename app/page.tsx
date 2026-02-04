@@ -30,7 +30,7 @@ export default async function Home() {
 
     return (
       <>
-        <header className="">
+        <header>
           <Header />
         </header>
 
