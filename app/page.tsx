@@ -1,5 +1,6 @@
 import Header from "../components/navigation/header";
 import type { Product } from "./models/product";
+import ProductGrid from "../components/ui/product-grid";
 
 //GETTER for shop API
 async function getStore() {
@@ -14,11 +15,11 @@ async function getStore() {
       throw new Error("Kunde inte hämta butiken");
     }
 
-    const data = await response.json();
-    return data;
+    return response.json();
 
   } catch(error) {
     console.error("Fel vid hämtning av butik: ", error);
+    throw error;
   }
 }
 
@@ -34,14 +35,10 @@ export default async function Home() {
           <Header />
         </header>
 
-        <main>
-          <h1>Välkommen till Pretty Shop!</h1>
-          <p>Hitta din favorit här nedan:</p>
-          <ul>
-            {products.map((product: {id: number, title: string }) => (
-              <li key={product.id}>{product.title}</li>
-            ))}
-          </ul>
+        <main className="grid grid-cols-1 justify-items-center mt-4 space-y-4">
+          <h1 className="font-bold text-2xl">Välkommen till Pretty Shop!</h1>
+          <span className="text-lg">Hitta din favorit här nedan.</span>
+          <ProductGrid products={products} />
         </main>
       </>
     );
