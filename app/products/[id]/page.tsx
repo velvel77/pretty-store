@@ -1,15 +1,15 @@
-import Header from "../../components/navigation/header";
-import type { Product } from ".././models/product";
+import Header from "../../../components/navigation/header";
+import type { Product } from "../../models/product";
+import { notFound } from "next/navigation";
 
-// export async function generateStaticParams() {
-//     const products = await getStore();
-// }
 
-async function getProduct(id: number): Promise<Product> {
+async function getProduct(id: string): Promise<Product> {
+  console.log("Value before calling getProduct:", id);
+  
   try {
 
     const response = await fetch(
-      `https://api.escuelajs.co/api/v1/products/${id}`
+      `https://api.escuelajs.co/api/v1/products/${id}` 
     );
 
     if(!response.ok) {
@@ -25,16 +25,19 @@ async function getProduct(id: number): Promise<Product> {
   }
 }
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
+export default async function ProductsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
-export default async function ProductsPage({ params }: PageProps) {
-    const { id } = params;
+  if(!id) {
+    notFound();
+  }
 
-    const product = await getProduct(Number(id));
+  const product = await getProduct(id);
+    
   return(
     <>
       <header>
@@ -43,21 +46,17 @@ export default async function ProductsPage({ params }: PageProps) {
 
       <section className="grid">
         <div className="flex flex-col">
-          <div className="flex">
-            <span>{product.category.id}</span>
-            <span>{product.category.name}</span>
-          </div>
           <h1>{product.title}</h1>
           <span>{product.price}</span>
           <span>{product.description}</span>
         </div>
-        <div className="">
+        {/* <div className="">
           <img
           className=""
           src=""
           alt=""
           />
-        </div>
+        </div> */}
       </section>
     </>
   )
