@@ -24,3 +24,41 @@ async function getProduct(id: number): Promise<Product> {
     throw error;
   }
 }
+
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function ProductsPage({ params }: PageProps) {
+    const { id } = params;
+
+    const product = await getProduct(Number(id));
+  return(
+    <>
+      <header>
+        <Header/>
+      </header>
+
+      <section className="grid">
+        <div className="flex flex-col">
+          <div className="flex">
+            <span>{product.category.id}</span>
+            <span>{product.category.name}</span>
+          </div>
+          <h1>{product.title}</h1>
+          <span>{product.price}</span>
+          <span>{product.description}</span>
+        </div>
+        <div className="">
+          <img
+          className=""
+          src=""
+          alt=""
+          />
+        </div>
+      </section>
+    </>
+  )
+}
