@@ -23,9 +23,9 @@ export default function ProductCard({ product }: { product: Product }) {
                 </div>
                 <div className="h-full flex flex-col justify-center items-center">
                     <h3 className="text-xl font-semibold">{product.title}</h3>
-                    <span>{product.id}</span>
+                    {/* <span>{product.id}</span> */}
                     <span className="font-semibold text-red-500">Price: {product.price}$</span>
-                    <span className="max-w-[80%]">{product.description}</span>
+                    {/* <span className="max-w-[80%]">{product.description}</span> */}
                 </div>
             </article>
         </Link>

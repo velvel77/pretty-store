@@ -44,11 +44,11 @@ export default async function ProductsPage({
         <Header/>
       </header>
 
-      <section className="grid">
+      <article  className="max-w-150 h-full flex flex-col m-10 p-10 border rounded-xl shadow-md overflow-hidden">
         <div className="flex flex-col">
-          <h1>{product.title}</h1>
-          <span>{product.price}</span>
-          <span>{product.description}</span>
+          <h1 className="text-xl font-bold">{product.title}</h1>
+          <span className="font-semibold text-red-500">Price: {product.price}</span>
+          <span className="mt-2 self-center">{product.description}</span>
         </div>
         {/* <div className="">
           <img
@@ -57,7 +57,7 @@ export default async function ProductsPage({
           alt=""
           />
         </div> */}
-      </section>
+      </article>
     </>
   )
 }
